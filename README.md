@@ -1,87 +1,100 @@
-# Controle de Estoque
+Controle de Estoque
 
-Aplicativo web simples, mobile first e sem backend para controlar produtos de hortifruti, registrar pedido e estoque, salvar tudo localmente e gerar uma mensagem pronta para WhatsApp.
+Aplicativo web simples, mobile-first e sem backend para controlar produtos de hortifruti, registrar pedidos e estoque, salvar tudo localmente e gerar uma mensagem pronta para WhatsApp.
 
-## Objetivo do projeto
+---
+
+Objetivo do projeto
 
 O app foi pensado para uso pessoal no celular, com foco em rapidez no dia a dia:
 
-- visualizar a lista de produtos por categoria
-- editar pedido e estoque direto na lista
-- salvar automaticamente no navegador
-- adicionar e remover produtos
-- pesquisar por nome e filtrar por categoria
-- gerar, copiar e enviar uma mensagem pronta para WhatsApp
+- Visualizar a lista de produtos por categoria;
+- Editar pedidos e estoque diretamente na lista;
+- Salvar automaticamente no navegador;
+- Adicionar e remover produtos;
+- Pesquisar por nome e filtrar por categoria;
+- Gerar, copiar e enviar uma mensagem pronta para o WhatsApp.
 
-## Tecnologias usadas
+---
+
+Tecnologias utilizadas
 
 - HTML5
 - CSS3
 - JavaScript puro
 - LocalStorage
 - Service Worker simples
-- Manifest Web App para PWA basico
+- Manifest Web App para PWA básico
 
-## Como rodar localmente
+---
 
-### Opcao 1: abrir diretamente no navegador
+Como rodar localmente
 
-Abra o arquivo `index.html`.
+Opção 1: abrir diretamente no navegador
 
-Nesta forma, o app principal funciona normalmente:
+Abra o arquivo "index.html".
 
-- cadastro e edicao de produtos
-- filtros
-- LocalStorage
-- geracao de mensagem
-- copia de texto
+Nessa forma, o app principal funciona normalmente:
 
-Observacao: recursos de PWA como `service worker` e instalacao do app dependem de `http/https` por regra do navegador e nao ativam em `file://`.
+- Cadastro e edição de produtos;
+- Filtros;
+- LocalStorage;
+- Geração de mensagem;
+- Cópia de texto.
 
-### Opcao 2: usar um servidor local
+«Observação: recursos de PWA, como Service Worker e instalação do aplicativo, dependem de HTTP/HTTPS por regra do navegador e não funcionam em "file://".»
 
-Qualquer servidor estatico serve. Exemplos:
+---
 
-```bash
+Opção 2: usar um servidor local
+
+Qualquer servidor estático serve. Exemplos:
+
 python -m http.server 5500
-```
 
 ou
 
-```bash
 npx serve .
-```
 
-Depois, acesse `http://localhost:5500` ou a porta exibida pelo servidor.
+Depois, acesse:
 
-## Como instalar no celular
+http://localhost:5500
 
-Depois de publicar em HTTPS ou abrir em `localhost`:
+ou a porta exibida pelo servidor.
 
-1. Abra o site no navegador do celular.
-2. Use a opcao `Adicionar a tela inicial` ou `Instalar aplicativo`.
-3. Confirme a instalacao.
-4. O app passara a abrir em modo semelhante a aplicativo.
+---
 
-## Como funciona o LocalStorage
+Como instalar no celular
 
-O projeto salva tudo no proprio navegador do usuario:
+Depois de publicar em HTTPS ou abrir em localhost:
 
-- lista de produtos
-- quantidades de pedido
-- quantidades de estoque
-- numero padrao do WhatsApp
+1. Abra o site no navegador do celular;
+2. Use a opção “Adicionar à tela inicial” ou “Instalar aplicativo”;
+3. Confirme a instalação;
+4. O app passará a abrir em modo semelhante a um aplicativo.
 
-As chaves sao isoladas por prefixo do projeto. Isso significa que:
+---
 
-- nao existe backend
-- os dados nao vao para nuvem automaticamente
-- limpar os dados do navegador remove as informacoes salvas
-- cada aparelho ou navegador possui seu proprio armazenamento
+Como funciona o LocalStorage
 
-## Estrutura principal
+O projeto salva tudo no próprio navegador do usuário:
 
-```text
+- Lista de produtos;
+- Quantidades de pedido;
+- Quantidades de estoque;
+- Número padrão do WhatsApp.
+
+As chaves são isoladas por prefixo do projeto. Isso significa que:
+
+- Não existe backend;
+- Os dados não vão para a nuvem automaticamente;
+- Limpar os dados do navegador remove as informações salvas;
+- Cada aparelho ou navegador possui seu próprio armazenamento.
+
+---
+
+Estrutura principal
+
 controle-estoque/
 |-- index.html
 |-- manifest.json
@@ -115,24 +128,24 @@ controle-estoque/
 |   `-- fonts/
 `-- docs/
     `-- arquitetura.md
-```
 
-## Funcionalidades entregues
+---
 
-- lista inicial de hortifruti por categoria
-- edicao direta de `Pedido` e `Estoque`
-- salvamento automatico no LocalStorage
-- formulario para adicionar produto
-- remocao individual
-- busca por nome
-- filtro por categoria
-- mensagem formatada para WhatsApp
-- copia da mensagem
-- abertura do WhatsApp com texto pronto
-- pagina de configuracoes
-- restauracao da base inicial
-- limpeza total dos dados do app
+Funcionalidades entregues
 
+- Lista inicial de hortifruti por categoria;
+- Edição direta de pedidos e estoque;
+- Salvamento automático no LocalStorage;
+- Formulário para adicionar produtos;
+- Remoção individual;
+- Busca por nome;
+- Filtro por categoria;
+- Mensagem formatada para WhatsApp;
+- Cópia da mensagem;
+- Abertura do WhatsApp com texto pronto;
+- Página de configurações;
+- Restauração da base inicial;
+- Limpeza total dos dados do aplicativo.
 ## Documentacao adicional
 
 A explicacao de arquitetura e decisoes tecnicas esta em [docs/arquitetura.md](docs/arquitetura.md).
