@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Controle de Estoque</title>
+  <desc id="desc">Icone verde com caixa e folha para o aplicativo de controle de estoque.</desc>
+  <rect width="512" height="512" rx="120" fill="#e9f7ee"/>
+  <path d="M126 186c0-16 13-29 29-29h202c16 0 29 13 29 29v142c0 16-13 29-29 29H155c-16 0-29-13-29-29V186z" fill="#1f8f4e"/>
+  <path d="M159 214h194v114H159z" fill="#ffffff" opacity=".18"/>
+  <path d="M188 146c12-34 44-58 82-58 44 0 80 32 86 74-11-8-26-13-43-13-33 0-63 19-76 49-9-21-27-39-49-52z" fill="#16653a"/>
+  <path d="M224 237h64v18h-64zm0 40h118v18H224zm0 40h86v18h-86z" fill="#ffffff"/>
+  <circle cx="184" cy="246" r="18" fill="#25d366"/>
+</svg>

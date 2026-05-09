@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f9347">
+  <meta name="description" content="Configuracoes do aplicativo Controle de Estoque.">
+  <title>Configuracoes | Controle de Estoque</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variaveis.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+  <link rel="stylesheet" href="../styles/configuracoes.css">
+</head>
+<body data-pagina="configuracoes">
+  <div class="pagina-configuracoes">
+    <header class="topo-configuracoes">
+      <p class="topo-configuracoes__chapeu">Controle Estoque</p>
+      <h1>Configuracoes</h1>
+      <p>Defina o numero padrao do WhatsApp e gerencie os dados salvos neste navegador.</p>
+      <a class="botao botao--secundario topo-configuracoes__voltar" href="../index.html">Voltar para o app</a>
+    </header>
+
+    <main class="configuracoes-conteudo">
+      <section class="painel configuracoes-card">
+        <p class="alerta alerta--info" id="status-configuracoes" role="status" aria-live="polite">
+          Carregando configuracoes...
+        </p>
+
+        <form class="configuracoes-formulario" id="form-configuracoes">
+          <label class="campo">
+            <span class="campo__rotulo">Numero padrao do WhatsApp</span>
+            <input
+              class="campo__controle"
+              id="numero-whatsapp"
+              type="tel"
+              inputmode="tel"
+              placeholder="Ex.: 5531999999999"
+              autocomplete="tel"
+            >
+          </label>
+
+          <p class="texto-ajuda">
+            Use DDI e DDD se quiser abrir o WhatsApp direto no contato padrao. Se deixar vazio, o link abre sem numero fixo.
+          </p>
+
+          <button class="botao botao--primario" type="submit">
+            Salvar configuracoes
+          </button>
+        </form>
+      </section>
+
+      <section class="painel configuracoes-card">
+        <div class="configuracoes-card__topo">
+          <div>
+            <p class="marca-texto">Dados locais</p>
+            <h2>Manutencao da base</h2>
+          </div>
+          <span class="contador-total" id="contador-configuracoes-produtos">0 produtos salvos</span>
+        </div>
+
+        <div class="configuracoes-acoes">
+          <button class="botao botao--secundario" id="botao-restaurar" type="button">
+            Restaurar produtos iniciais
+          </button>
+          <button class="botao botao--perigo-config" id="botao-limpar" type="button">
+            Limpar dados salvos
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script defer src="../js/utils.js"></script>
+  <script defer src="../data/produtos-iniciais.js"></script>
+  <script defer src="../js/validacoes.js"></script>
+  <script defer src="../js/storage.js"></script>
+  <script defer src="../scripts/configuracoes.js"></script>
+</body>
+</html>

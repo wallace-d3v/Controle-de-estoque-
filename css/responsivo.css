@@ -1,0 +1,43 @@
+@media (min-width: 560px) {
+  .pagina {
+    gap: var(--espaco-6);
+  }
+
+  .topo-app {
+    padding-left: var(--espaco-5);
+    padding-right: var(--espaco-5);
+  }
+
+  .conteudo-principal {
+    padding: 0 var(--espaco-4);
+  }
+
+  .painel__filtros {
+    grid-template-columns: minmax(0, 1.5fr) minmax(210px, 0.85fr);
+  }
+
+  .barra-acoes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .formulario-produto {
+    align-items: end;
+    grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.8fr) minmax(220px, 0.7fr);
+  }
+}
+
+@media (min-width: 760px) {
+  .topo-app__principal {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, auto);
+  }
+
+  .painel__topo--linha {
+    grid-template-columns: 1fr auto;
+  }
+
+  .legenda-status {
+    grid-auto-flow: column;
+    justify-content: center;
+  }
+}

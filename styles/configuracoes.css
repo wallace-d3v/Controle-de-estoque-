@@ -1,0 +1,75 @@
+.pagina-configuracoes {
+  display: grid;
+  gap: var(--espaco-5);
+  margin: 0 auto;
+  max-width: 860px;
+  min-height: 100vh;
+  padding: 0 0 var(--espaco-7);
+}
+
+.topo-configuracoes {
+  background: linear-gradient(135deg, var(--cor-primaria-escura) 0%, var(--cor-primaria) 100%);
+  border-radius: 0 0 28px 28px;
+  box-shadow: var(--sombra-topo);
+  color: #ffffff;
+  display: grid;
+  gap: var(--espaco-3);
+  padding:
+    calc(env(safe-area-inset-top, 0px) + var(--espaco-6))
+    var(--espaco-4)
+    var(--espaco-6);
+}
+
+.topo-configuracoes p,
+.topo-configuracoes h1 {
+  color: #ffffff;
+}
+
+.topo-configuracoes__chapeu {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.topo-configuracoes__voltar {
+  margin-top: var(--espaco-2);
+}
+
+.configuracoes-conteudo {
+  display: grid;
+  gap: var(--espaco-4);
+  padding: 0 var(--espaco-3);
+}
+
+.configuracoes-card {
+  gap: var(--espaco-4);
+}
+
+.configuracoes-formulario,
+.configuracoes-acoes {
+  display: grid;
+  gap: var(--espaco-4);
+}
+
+.configuracoes-card__topo {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.botao--perigo-config {
+  background: var(--cor-perigo-suave);
+  border: 1px solid #ffc2bd;
+  color: #b12f29;
+  font-weight: 700;
+}
+
+@media (min-width: 620px) {
+  .configuracoes-conteudo {
+    padding: 0 var(--espaco-4);
+  }
+
+  .configuracoes-acoes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

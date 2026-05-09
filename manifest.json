@@ -1,0 +1,28 @@
+{
+  "id": "./",
+  "name": "Controle de Estoque Hortifruti",
+  "short_name": "Estoque",
+  "description": "Aplicativo web pessoal para controlar pedido e estoque de hortifruti e gerar mensagem pronta para WhatsApp.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f7f3",
+  "theme_color": "#1f8f4e",
+  "icons": [
+    {
+      "src": "./assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

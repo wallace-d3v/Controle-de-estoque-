@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Controle de Estoque Maskable</title>
+  <desc id="desc">Icone maskable com caixa de estoque e folha.</desc>
+  <rect width="512" height="512" fill="#1f8f4e"/>
+  <circle cx="256" cy="256" r="182" fill="#e9f7ee"/>
+  <path d="M154 194c0-14 12-26 26-26h152c14 0 26 12 26 26v124c0 14-12 26-26 26H180c-14 0-26-12-26-26V194z" fill="#1f8f4e"/>
+  <path d="M202 144c13-27 40-46 71-46 36 0 67 25 74 60-10-6-21-9-34-9-30 0-57 17-69 43-8-19-23-35-42-48z" fill="#25d366"/>
+  <path d="M212 224h90v20h-90zm0 42h118v20H212zm0 42h76v20h-76z" fill="#ffffff"/>
+</svg>
