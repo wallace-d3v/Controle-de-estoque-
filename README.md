@@ -54,16 +54,6 @@ npx serve .
 
 Depois, acesse `http://localhost:5500` ou a porta exibida pelo servidor.
 
-## Como hospedar no GitHub Pages
-
-1. Envie a pasta do projeto para um repositorio no GitHub.
-2. No repositorio, abra `Settings > Pages`.
-3. Em `Build and deployment`, escolha a branch principal e a pasta raiz `/ (root)`.
-4. Salve a configuracao e aguarde a publicacao.
-5. A URL publicada passara a servir o app com HTTPS, permitindo o funcionamento do PWA basico.
-
-Como os caminhos do projeto sao relativos, ele funciona bem no GitHub Pages sem ajuste extra de rota.
-
 ## Como instalar no celular
 
 Depois de publicar em HTTPS ou abrir em `localhost`:
