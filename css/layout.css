@@ -9,6 +9,7 @@
 }
 
 .topo-app {
+  backdrop-filter: blur(10px);
   background: linear-gradient(135deg, var(--cor-primaria-escura) 0%, var(--cor-primaria) 60%, #13a14e 100%);
   border-radius: 0 0 28px 28px;
   box-shadow: var(--sombra-topo);

@@ -1,4 +1,4 @@
-const CACHE_NAME = "controle-estoque-v1";
+const CACHE_NAME = "controle-estoque-v2";
 const ARQUIVOS_ESTATICOS = [
   "./",
   "./index.html",
@@ -57,6 +57,23 @@ self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin !== self.location.origin) {
+    return;
+  }
+
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          const responseClone = networkResponse.clone();
+
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
     return;
   }
 

@@ -52,7 +52,7 @@
 
 .topo-app__titulos p {
   color: rgba(255, 255, 255, 0.82);
-  font-size: 1rem;
+  font-size: 0.98rem;
   margin-top: 0.2rem;
 }
 
@@ -67,10 +67,12 @@
   border-radius: var(--raio-lg);
   color: rgba(255, 255, 255, 0.94);
   display: grid;
+  font-size: 0.88rem;
   gap: var(--espaco-2);
   justify-items: center;
-  min-height: 5.5rem;
-  padding: 0.85rem 0.5rem;
+  line-height: 1.15;
+  min-height: 5.2rem;
+  padding: 0.8rem 0.3rem;
   text-align: center;
 }
 
@@ -92,6 +94,12 @@
 .atalho-app__icone svg {
   height: 100%;
   width: 100%;
+}
+
+.atalho-app > span:last-child {
+  display: block;
+  max-width: 5rem;
+  overflow-wrap: anywhere;
 }
 
 .marca-texto,
@@ -283,6 +291,7 @@
 }
 
 .tabela-area {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfb 100%);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-lg);
   overflow: hidden;
@@ -297,6 +306,7 @@
 
 .tabela-estoque {
   border-collapse: collapse;
+  min-width: 22rem;
   min-width: 100%;
   width: 100%;
 }
@@ -323,6 +333,7 @@
 .tabela-estoque th:nth-child(2),
 .tabela-estoque td:nth-child(2) {
   text-align: left;
+  white-space: nowrap;
 }
 
 .tabela-estoque td:first-child,
@@ -337,7 +348,12 @@
 .tabela-estoque th:nth-child(3),
 .tabela-estoque td:nth-child(4),
 .tabela-estoque th:nth-child(4) {
-  width: 7rem;
+  width: 5.65rem;
+}
+
+.tabela-estoque td:nth-child(2),
+.tabela-estoque th:nth-child(2) {
+  min-width: 9rem;
 }
 
 .tabela-estoque tbody tr:last-child td {
@@ -362,6 +378,10 @@
   background: #fcfdfc;
 }
 
+.linha-produto:hover td {
+  background: #f8fbf9;
+}
+
 .coluna-indice {
   color: var(--cor-texto-suave);
   font-variant-numeric: tabular-nums;
@@ -370,8 +390,9 @@
 .campo-tabela {
   background-clip: padding-box;
   box-shadow: inset 0 1px 2px rgba(16, 24, 40, 0.03);
+  font-size: 1rem;
   min-height: 2.75rem;
-  padding: 0.7rem 0.75rem;
+  padding: 0.55rem 0.5rem;
   text-align: center;
 }
 

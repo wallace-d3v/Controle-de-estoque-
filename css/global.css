@@ -5,6 +5,7 @@ body {
   color: var(--cor-texto);
   font-family: var(--fonte-base);
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 h1,
@@ -16,7 +17,7 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(1.7rem, 6vw, 2.5rem);
+  font-size: clamp(1.55rem, 5.4vw, 2.3rem);
 }
 
 h2 {
