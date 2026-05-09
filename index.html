@@ -77,6 +77,8 @@
       </div>
     </header>
 
+    <div class="topo-espacador" aria-hidden="true"></div>
+
     <main class="conteudo-principal">
       <section class="painel painel--filtros">
         <div class="painel__filtros">
@@ -133,7 +135,7 @@
             <p class="marca-texto">Estoque</p>
             <h2>Pedido e estoque por categoria</h2>
           </div>
-          <span class="contador-itens" id="contador-produtos-visiveis">0 itens visiveis</span>
+          <span class="contador-itens" id="contador-produtos-visiveis">0 de 0 itens</span>
         </div>
 
         <div class="tabela-area" id="lista-produtos" aria-live="polite"></div>
@@ -203,13 +205,27 @@
         </div>
       </section>
 
+      <section class="painel painel--controle-lista">
+        <div class="controle-lista">
+          <a class="botao botao--primario controle-lista__cta" href="#secao-adicionar">
+            Adicionar produto
+          </a>
+
+          <div class="controle-lista__info">
+            <span class="contador-total" id="resumo-total-produtos-rodape">0 itens no total</span>
+          </div>
+
+          <nav class="paginacao" id="paginacao-lista" aria-label="Paginacao da lista"></nav>
+        </div>
+      </section>
+
       <section class="painel painel--adicionar" id="secao-adicionar">
         <div class="painel__topo painel__topo--linha">
           <div>
             <p class="marca-texto">Adicionar produto</p>
             <h2>Novo item na lista</h2>
           </div>
-          <span class="contador-total" id="resumo-total-produtos-rodape">0 itens no total</span>
+          <span class="contador-total" id="resumo-total-categorias">0 categorias</span>
         </div>
 
         <form class="formulario-produto" id="form-adicionar-produto">

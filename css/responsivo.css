@@ -12,6 +12,10 @@
     padding: 0 var(--espaco-4);
   }
 
+  .topo-espacador {
+    height: var(--altura-topo-tablet);
+  }
+
   .painel__filtros {
     grid-template-columns: minmax(0, 1.5fr) minmax(210px, 0.85fr);
   }
@@ -23,6 +27,15 @@
   .formulario-produto {
     align-items: end;
     grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.8fr) minmax(220px, 0.7fr);
+  }
+
+  .controle-lista {
+    align-items: center;
+    grid-template-columns: minmax(220px, auto) 1fr auto;
+  }
+
+  .controle-lista__info {
+    justify-items: start;
   }
 }
 
@@ -39,5 +52,9 @@
   .legenda-status {
     grid-auto-flow: column;
     justify-content: center;
+  }
+
+  .tabela-scroll {
+    max-height: min(62vh, 920px);
   }
 }

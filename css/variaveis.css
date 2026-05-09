@@ -17,10 +17,13 @@
   --cor-alerta: #ffcc4d;
   --cor-alerta-suave: #fff2c9;
   --cor-ok: #cdeecf;
+  --cor-ok-texto: #1f7a36;
   --cor-info: #edf3ff;
   --cor-info-texto: #365ca8;
   --sombra-cartao: 0 16px 48px rgba(16, 24, 40, 0.06);
   --sombra-topo: 0 18px 42px rgba(5, 63, 27, 0.22);
+  --altura-topo-mobile: 15.75rem;
+  --altura-topo-tablet: 14rem;
   --raio-xl: 28px;
   --raio-lg: 20px;
   --raio-md: 16px;

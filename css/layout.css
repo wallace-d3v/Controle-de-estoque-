@@ -5,6 +5,7 @@
   max-width: var(--largura-maxima);
   min-height: 100vh;
   padding: 0 0 var(--espaco-7);
+  position: relative;
 }
 
 .topo-app {
@@ -14,10 +15,17 @@
   color: #ffffff;
   display: grid;
   gap: var(--espaco-5);
+  left: 50%;
+  max-width: var(--largura-maxima);
   padding:
     calc(env(safe-area-inset-top, 0px) + var(--espaco-5))
     var(--espaco-4)
     var(--espaco-5);
+  position: fixed;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 30;
 }
 
 .topo-app__barra,
@@ -28,8 +36,13 @@
 .metricas-grid,
 .painel__topo--linha,
 .barra-acoes,
-.legenda-status {
+.legenda-status,
+.controle-lista {
   display: grid;
+}
+
+.topo-espacador {
+  height: var(--altura-topo-mobile);
 }
 
 .topo-app__barra {
@@ -84,13 +97,19 @@
 }
 
 .barra-acoes,
-.legenda-status {
+.legenda-status,
+.controle-lista {
   gap: var(--espaco-3);
 }
 
 .formulario-produto {
   display: grid;
   gap: var(--espaco-4);
+}
+
+.controle-lista__info {
+  display: grid;
+  justify-items: center;
 }
 
 .rodape {

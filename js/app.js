@@ -46,6 +46,7 @@
       busca: "",
       categoria: "todas",
       mensagemAtual: "",
+      paginaAtual: 1,
       produtos: storage.carregarDados()
     };
 
@@ -62,6 +63,8 @@
       mensagemPreview: utils.selecionarElemento("#mensagem-preview"),
       novoProdutoCategoria: utils.selecionarElemento("#novo-produto-categoria"),
       novoProdutoNome: utils.selecionarElemento("#novo-produto-nome"),
+      paginacaoLista: utils.selecionarElemento("#paginacao-lista"),
+      resumoTotalCategorias: utils.selecionarElemento("#resumo-total-categorias"),
       resumoTotalEstoqueBaixo: utils.selecionarElemento("#resumo-total-estoque-baixo"),
       resumoTotalPedido: utils.selecionarElemento("#resumo-total-pedido"),
       resumoTotalProdutos: utils.selecionarElemento("#resumo-total-produtos"),
@@ -81,6 +84,29 @@
     function obterProdutosVisiveis() {
       const produtosBuscados = produtosApi.buscarProdutos(estado.produtos, estado.busca);
       return produtosApi.filtrarPorCategoria(produtosBuscados, estado.categoria);
+    }
+
+    function obterItensPorPagina() {
+      return window.innerWidth < 560 ? 12 : 14;
+    }
+
+    function obterContextoTabela() {
+      const produtosFiltrados = obterProdutosVisiveis();
+      const itensPorPagina = obterItensPorPagina();
+      const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados.length / itensPorPagina));
+
+      estado.paginaAtual = Math.max(1, Math.min(estado.paginaAtual, totalPaginas));
+
+      const inicio = (estado.paginaAtual - 1) * itensPorPagina;
+      const produtosPagina = produtosFiltrados.slice(inicio, inicio + itensPorPagina);
+
+      return {
+        inicio,
+        itensPorPagina,
+        produtosFiltrados,
+        produtosPagina,
+        totalPaginas
+      };
     }
 
     function obterCategoriasComProdutos(produtos) {
@@ -125,16 +151,20 @@
       }).length;
     }
 
-    function atualizarResumo(produtosVisiveis) {
+    function atualizarResumo(contextoTabela) {
       const totalProdutos = estado.produtos.length;
       const totalComPedido = estado.produtos.filter((produto) => Number(produto.pedido) > 0).length;
       const totalEstoqueBaixo = contarEstoqueBaixo(estado.produtos);
+      const totalCategorias = categoriasApi.listarCategorias(estado.produtos).length;
+      const totalFiltrados = contextoTabela.produtosFiltrados.length;
+      const totalNaPagina = contextoTabela.produtosPagina.length;
 
       elementos.resumoTotalProdutos.textContent = String(totalProdutos);
       elementos.resumoTotalPedido.textContent = String(totalComPedido);
       elementos.resumoTotalEstoqueBaixo.textContent = String(totalEstoqueBaixo);
       elementos.resumoTotalProdutosRodape.textContent = `${totalProdutos} itens no total`;
-      elementos.contadorProdutosVisiveis.textContent = `${produtosVisiveis.length} itens visiveis`;
+      elementos.resumoTotalCategorias.textContent = `${totalCategorias} categorias`;
+      elementos.contadorProdutosVisiveis.textContent = `${totalNaPagina} de ${totalFiltrados} itens`;
     }
 
     function atualizarPreviewMensagem() {
@@ -161,22 +191,80 @@
       return "campo__controle campo-tabela";
     }
 
-    function renderizarTabela(produtosVisiveis) {
-      let indiceSequencial = 1;
-      const categoriasOrdenadas = obterCategoriasComProdutos(produtosVisiveis);
+    function renderizarPaginacao(totalPaginas) {
+      if (!elementos.paginacaoLista) {
+        return;
+      }
 
-      if (produtosVisiveis.length === 0) {
+      const itens = [];
+
+      itens.push(`
+        <button class="paginacao__botao" type="button" data-paginacao="anterior" ${estado.paginaAtual === 1 ? "disabled" : ""} aria-label="Pagina anterior">
+          &lsaquo;
+        </button>
+      `);
+
+      const paginas = [];
+
+      for (let pagina = 1; pagina <= totalPaginas; pagina += 1) {
+        if (
+          pagina === 1 ||
+          pagina === totalPaginas ||
+          Math.abs(pagina - estado.paginaAtual) <= 1
+        ) {
+          paginas.push(pagina);
+        }
+      }
+
+      const paginasSemDuplicidade = Array.from(new Set(paginas)).sort((a, b) => a - b);
+      let ultimaPaginaRenderizada = 0;
+
+      paginasSemDuplicidade.forEach((pagina) => {
+        if (pagina - ultimaPaginaRenderizada > 1) {
+          itens.push('<span class="paginacao__reticencias" aria-hidden="true">...</span>');
+        }
+
+        itens.push(`
+          <button
+            class="paginacao__pagina ${pagina === estado.paginaAtual ? "paginacao__pagina--ativa" : ""}"
+            type="button"
+            data-pagina="${pagina}"
+            aria-label="Ir para pagina ${pagina}"
+            ${pagina === estado.paginaAtual ? 'aria-current="page"' : ""}
+          >
+            ${pagina}
+          </button>
+        `);
+
+        ultimaPaginaRenderizada = pagina;
+      });
+
+      itens.push(`
+        <button class="paginacao__botao" type="button" data-paginacao="proxima" ${estado.paginaAtual === totalPaginas ? "disabled" : ""} aria-label="Proxima pagina">
+          &rsaquo;
+        </button>
+      `);
+
+      elementos.paginacaoLista.innerHTML = itens.join("");
+    }
+
+    function renderizarTabela(contextoTabela) {
+      let indiceSequencial = contextoTabela.inicio + 1;
+      const categoriasOrdenadas = obterCategoriasComProdutos(contextoTabela.produtosPagina);
+
+      if (contextoTabela.produtosFiltrados.length === 0) {
         elementos.listaProdutos.innerHTML = `
           <div class="vazio">
             <p>Nenhum produto encontrado para os filtros atuais.</p>
           </div>
         `;
+        renderizarPaginacao(1);
         return;
       }
 
       const linhasTabela = categoriasOrdenadas
         .map((categoria) => {
-          const produtosDaCategoria = produtosVisiveis.filter((produto) => produto.categoria === categoria);
+          const produtosDaCategoria = contextoTabela.produtosPagina.filter((produto) => produto.categoria === categoria);
 
           const linhasProdutos = produtosDaCategoria
             .map((produto) => {
@@ -247,15 +335,17 @@
           </table>
         </div>
       `;
+
+      renderizarPaginacao(contextoTabela.totalPaginas);
     }
 
     function sincronizarInterface(textoStatus, tipoStatus) {
-      const produtosVisiveis = obterProdutosVisiveis();
+      const contextoTabela = obterContextoTabela();
 
       preencherSeletoresCategoria();
-      atualizarResumo(produtosVisiveis);
+      atualizarResumo(contextoTabela);
       atualizarPreviewMensagem();
-      renderizarTabela(produtosVisiveis);
+      renderizarTabela(contextoTabela);
 
       if (textoStatus) {
         mostrarStatus(textoStatus, tipoStatus);
@@ -277,6 +367,7 @@
         });
 
         salvarProdutos();
+        estado.paginaAtual = obterContextoTabela().totalPaginas;
         elementos.formAdicionarProduto.reset();
         preencherSeletoresCategoria();
         elementos.novoProdutoNome.focus();
@@ -343,7 +434,7 @@
         campoEstoque.className = obterClasseEstoque(produtoAtualizado);
       }
 
-      atualizarResumo(obterProdutosVisiveis());
+      atualizarResumo(obterContextoTabela());
       atualizarPreviewMensagem();
       mostrarStatus("Alteracoes salvas automaticamente.", "sucesso");
     }
@@ -360,11 +451,38 @@
 
     function lidarBusca(event) {
       estado.busca = event.target.value;
+      estado.paginaAtual = 1;
       sincronizarInterface();
     }
 
     function lidarFiltroCategoria(event) {
       estado.categoria = event.target.value;
+      estado.paginaAtual = 1;
+      sincronizarInterface();
+    }
+
+    function lidarPaginacao(event) {
+      const botaoPagina = event.target.closest("[data-pagina]");
+      const botaoDirecao = event.target.closest("[data-paginacao]");
+
+      if (botaoPagina) {
+        estado.paginaAtual = Number(botaoPagina.dataset.pagina) || 1;
+        sincronizarInterface();
+        return;
+      }
+
+      if (!botaoDirecao) {
+        return;
+      }
+
+      if (botaoDirecao.dataset.paginacao === "anterior") {
+        estado.paginaAtual = Math.max(1, estado.paginaAtual - 1);
+      }
+
+      if (botaoDirecao.dataset.paginacao === "proxima") {
+        estado.paginaAtual += 1;
+      }
+
       sincronizarInterface();
     }
 
@@ -413,6 +531,8 @@
       elementos.botaoGerarMensagem.addEventListener("click", gerarMensagemManual);
       elementos.botaoCopiarMensagem.addEventListener("click", copiarMensagem);
       elementos.botaoEnviarWhatsapp.addEventListener("click", enviarWhatsapp);
+      elementos.paginacaoLista.addEventListener("click", lidarPaginacao);
+      window.addEventListener("resize", () => sincronizarInterface());
     }
 
     function registrarServiceWorker() {
