@@ -1,4 +1,4 @@
-const CACHE_NAME = "controle-estoque-v2";
+const CACHE_NAME = "controle-estoque-v3";
 const ARQUIVOS_ESTATICOS = [
   "./",
   "./index.html",

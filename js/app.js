@@ -45,6 +45,7 @@
     const estado = {
       busca: "",
       categoria: "todas",
+      larguraViewport: window.innerWidth,
       mensagemAtual: "",
       paginaAtual: 1,
       produtos: storage.carregarDados()
@@ -486,6 +487,17 @@
       sincronizarInterface();
     }
 
+    function lidarResize() {
+      const larguraAtual = window.innerWidth;
+
+      if (larguraAtual === estado.larguraViewport) {
+        return;
+      }
+
+      estado.larguraViewport = larguraAtual;
+      sincronizarInterface();
+    }
+
     function gerarMensagemManual() {
       atualizarPreviewMensagem();
 
@@ -532,7 +544,7 @@
       elementos.botaoCopiarMensagem.addEventListener("click", copiarMensagem);
       elementos.botaoEnviarWhatsapp.addEventListener("click", enviarWhatsapp);
       elementos.paginacaoLista.addEventListener("click", lidarPaginacao);
-      window.addEventListener("resize", () => sincronizarInterface());
+      window.addEventListener("resize", lidarResize);
     }
 
     function registrarServiceWorker() {

@@ -16,17 +16,13 @@
   color: #ffffff;
   display: grid;
   gap: var(--espaco-5);
-  left: 50%;
-  max-width: var(--largura-maxima);
+  max-width: 100%;
   padding:
     calc(env(safe-area-inset-top, 0px) + var(--espaco-5))
     var(--espaco-4)
     var(--espaco-5);
-  position: fixed;
-  top: 0;
-  transform: translateX(-50%);
+  position: relative;
   width: 100%;
-  z-index: 30;
 }
 
 .topo-app__barra,
@@ -43,7 +39,7 @@
 }
 
 .topo-espacador {
-  height: var(--altura-topo-mobile);
+  display: none;
 }
 
 .topo-app__barra {
