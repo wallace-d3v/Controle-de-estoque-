@@ -10,24 +10,6 @@ Aplicativo web mobile-first para controle simples de produtos, pedidos e estoque
 
 Projeto funcional em versao MVP.
 
-## Preview
-
-Adicione aqui as imagens do projeto depois de enviar os arquivos para o repositorio.
-
-Sugestao de estrutura:
-
-```md
-![Tela inicial](assets/screenshots/tela-inicial.png)
-![Lista de produtos](assets/screenshots/lista-produtos.png)
-![Mensagem para WhatsApp](assets/screenshots/mensagem-whatsapp.png)
-![Tela de configuracoes](assets/screenshots/configuracoes.png)
-```
-
-Pasta sugerida para as imagens:
-
-```txt
-assets/screenshots/
-```
 
 ## Objetivo do projeto
 
